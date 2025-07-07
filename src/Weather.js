@@ -25,9 +25,9 @@ export default function Weather() {
         
             <div className="row">
                 <div className="col-12 col-md-6 weather-icon-display">
-                <div className="d-flex align-items-center">
+                <div className="d-flex">
                 <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="Weather Icon" className="me-1" />
-                <span className="temperature">6</span><span className="temperature-unit">°C</span>
+                <span className="temperature">6</span><span className="temperature-unit mt-3">°C</span>
                 </div>
             </div>
 
