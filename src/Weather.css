@@ -33,8 +33,7 @@ overflow: visible !important;
 padding:10px !important;
 }
 
-button{
-padding: 0 px auto !important;
+.Weather button {
 cursor: pointer;
 }
 
@@ -42,7 +41,9 @@ cursor: pointer;
 font-size: 48px;
 font-weight: 400;
 color: rgb(33, 33, 33);
+margin-right: 10px;
 }
 .Weather .temperature-unit {
 font-size: 16px;
+font-weight: 400;
 }

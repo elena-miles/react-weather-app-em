@@ -6,12 +6,12 @@ export default function Weather() {
         <div className="Weather">
 
         <form className="form mx-auto mb-2" style={{ maxWidth: "450px" }}>
-            <div className="row">
-                <div className="col-9">
+            <div className="row  g-1">
+                <div className="col-12 col-md-9">
                 <input type="search" className="form-control" placeholder="Enter a city..." autoFocus="on" />
                 </div>
-                <div className="col-3">
-                <button type="submit" className="btn btn-primary col-3 w-100" value="Search">Search</button>
+                <div className="col-8 mx-auto col-md-3">
+                <button type="submit" className="btn btn-primary w-100" value="Search">Search</button>
                </div>
             </div>
         </form>
@@ -24,14 +24,14 @@ export default function Weather() {
           </ul>
         
             <div className="row">
-                <div className="col-6 weather-icon-display">
+                <div className="col-12 col-md-6 weather-icon-display">
                 <div className="d-flex align-items-center">
                 <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="Weather Icon" className="me-1" />
                 <span className="temperature">6</span><span className="temperature-unit">°C</span>
                 </div>
             </div>
 
-            <div className="col-6">
+            <div className="col-12 col-md-6">
                     <ul>
                         <li>Precipitation: 0%</li>
                         <li>Humidity: 0%</li>
