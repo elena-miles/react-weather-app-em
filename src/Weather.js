@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import axios from "axios";
 
 
-export default function Weather() { 
-    const [weatherData, setWeatherData] = useState({ ready: false});
-    const [city] = useState("London"); //default city
+export default function Weather(props) { 
+    const [weatherData, setWeatherData] = useState({ready: false});
+    const [city, setCity] = useState(props.defaultCity);
 
     function handleResponse(response) {
         console.log(response.data);
@@ -64,7 +64,7 @@ if (weatherData.ready) {
 ); 
     } else {
     const APIkey="ac209dae1f283fb332a5bb7f50b0f468";
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=metric`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${APIkey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "loading..."; // Display a loading message while fetching data could add a slider or spinner here
     }           
