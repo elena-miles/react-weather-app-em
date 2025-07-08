@@ -4,24 +4,27 @@ import axios from "axios";
 
 
 export default function Weather() { 
-    // State variables to hold weather data 
-    const [Temperature, setTemperature] = useState(null);
-    const [Loading, setLoading] = useState(false);
-
+    const [weatherData, setWeatherData] = useState({});//empty object to store weather data
+    const [loading, setLoading] = useState(false);
+    const [city] = useState("London"); //default city
 
     function handleResponse(response) {
         console.log(response.data);
-        setTemperature(response.data.main.temp);
+        setWeatherData({
+            city: response.data.name,
+            temperature: response.data.main.temp,
+            wind: response.data.wind,
+            description: response.data.weather[0].description,
+            precipitation: response.data.clouds.all,
+            humidity: response.data.main.humidity,
+        });
+    
         setLoading(true);
     }
 
-    const APIkey="ac209dae1f283fb332a5bb7f50b0f468";
-    const [city, setCity] = useState("London"); // Default city
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-
+    if (loading) {
     return (
-        <div className="Weather">
+            <div className="Weather">
 
         <form className="form mx-auto mb-2" style={{ maxWidth: "450px" }}>
             <div className="row  g-1">
@@ -34,29 +37,35 @@ export default function Weather() {
             </div>
         </form>
 
-          <h1 className="City">City</h1>
+          <h1 className="City">{weatherData.city}</h1>
 
           <ul className="Weather-details">
-            <li><span className="Day">Day</span>,{" "}<span className="Time">Time</span></li>
-            <li className="Condition">Condition</li>
+            <li><span className="Day">Day</span>,{" "}<span className="Time">time</span></li>
+            <li className="Condition">{weatherData.description}</li>
           </ul>
         
             <div className="row">
                 <div className="col-12 col-sm-6 weather-icon-display">
                 <div className="d-flex">
                 <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" alt="Weather Icon" className="me-1" />
-                <span className="temperature">{Math.round(temperature)}</span><span className="temperature-unit mt-3">°C</span>
+                <span className="temperature">{Math.round(weatherData.temperature)}</span><span className="temperature-unit mt-3">°C</span>
                 </div>
             </div>
 
             <div className="col-12 col-sm-6">
                     <ul>
-                        <li>Precipitation:{" "}{}%</li>
-                        <li>Humidity:{" "}{}%</li>
-                        <li>Wind:{" "}{}km/h</li>
+                        <li>Precipitation:{" "}{weatherData.precipitation}%</li>
+                        <li>Humidity:{" "}{weatherData.humidity}%</li>
+                        <li>Wind:{" "}{weatherData.wind.speed}km/h</li>
                     </ul>
             </div>
             </div>
         </div>
 ); 
+    } else {
+    const APIkey="ac209dae1f283fb332a5bb7f50b0f468";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIkey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+    return "loading..."; // Display a loading message while fetching data could add a slider or spinner here
+    }           
 }
