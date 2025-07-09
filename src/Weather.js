@@ -9,9 +9,22 @@ export default function Weather(props) {
     const [weatherData, setWeatherData] = useState({ready: false});
     const [city, setCity] = useState(props.defaultCity);
 
+
+    function search() {
+        if (city) {
+            const APIkey="ac209dae1f283fb332a5bb7f50b0f468";
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${APIkey}&units=metric`;
+            axios.get(apiUrl).then(handleResponse);
+        } else {
+            search();
+            alert("Please enter a city name.");
+            return "Loading...";
+        }   
+
+    }
     function handleSubmit(event) {
         event.preventDefault();
-       alert(`Searching for ${city}!`);
+       search();
     }
 
     function handleCityChange(event) {
@@ -32,12 +45,6 @@ export default function Weather(props) {
             humidity: response.data.main.humidity,
             iconURL:"https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" //default icon REVISIT
         });
-    }
-    if (!weatherData.ready) {
-        const APIkey="ac209dae1f283fb332a5bb7f50b0f468";
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${APIkey}&units=metric`;
-        axios.get(apiUrl).then(handleResponse);
-       return "Loading...";
     }
     return (
         <div className="Weather">
