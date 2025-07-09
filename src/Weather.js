@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from "axios";
-
+import './Weather.css';
 
 export default function Weather(props) { 
     const [weatherData, setWeatherData] = useState({ready: false});
-    const [city, setCity] = useState(props.defaultCity);
+    const [city] = useState(props.defaultCity);
 
     function handleResponse(response) {
         console.log(response.data);
@@ -19,13 +19,17 @@ export default function Weather(props) {
             description: response.data.weather[0].description,
             precipitation: response.data.clouds.all,
             humidity: response.data.main.humidity,
-            iconURL:"https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" //default icon, can be updated based on response
+            iconURL:"https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" //default icon REVISIT
         });
     }
-if (weatherData.ready) {
+    if (!weatherData.ready) {
+        const APIkey="ac209dae1f283fb332a5bb7f50b0f468";
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${APIkey}&units=metric`;
+        axios.get(apiUrl).then(handleResponse);
+       return "Loading...";
+    }
     return (
-            <div className="Weather">
-
+        <div className="Weather">
         <form className="form mx-auto mb-2" style={{ maxWidth: "450px" }}>
             <div className="row  g-1">
                 <div className="col-12 col-md-9">
@@ -38,9 +42,8 @@ if (weatherData.ready) {
         </form>
 
           <h1 className="City">{weatherData.city}</h1>
-
           <ul className="Weather-details">
-            <li><span className="Day">{weatherData.date}</span>,{" "}<span className="Time">{weatherData.time}</span></li>
+            <li><span className="Day">{weatherData.date.toLocaleDateString()}</span>,{" "}<span className="Time">{weatherData.time}</span></li>
             <li className="condition text-capitalize">{weatherData.description}</li>
           </ul>
         
@@ -62,10 +65,5 @@ if (weatherData.ready) {
             </div>
         </div>
 ); 
-    } else {
-    const APIkey="ac209dae1f283fb332a5bb7f50b0f468";
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${APIkey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-    return "loading..."; // Display a loading message while fetching data could add a slider or spinner here
-    }           
+       
 }
