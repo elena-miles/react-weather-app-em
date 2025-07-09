@@ -1,12 +1,22 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from "axios";
 import './Weather.css';
-import FormattedDate from "./FormattedDate";
+
+import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) { 
     const [weatherData, setWeatherData] = useState({ready: false});
-    const [city] = useState(props.defaultCity);
+    const [city, setCity] = useState(props.defaultCity);
+
+    function handleSubmit(event) {
+        event.preventDefault();
+       alert(`Searching for ${city}!`);
+    }
+
+    function handleCityChange(event) {
+        setCity(event.target.value);
+    }
 
     function handleResponse(response) {
         console.log(response.data);
@@ -31,40 +41,20 @@ export default function Weather(props) {
     }
     return (
         <div className="Weather">
-        <form className="form mx-auto mb-2" style={{ maxWidth: "450px" }}>
-            <div className="row  g-1">
-                <div className="col-12 col-md-9">
-                <input type="search" className="form-control" placeholder="Enter a city..." autoFocus="on" />
-                </div>
-                <div className="col-8 mx-auto col-md-3">
-                <button type="submit" className="btn btn-primary w-100" value="Search">Search</button>
-               </div>
-            </div>
-        </form>
 
-          <h1 className="City">{weatherData.city}</h1>
-          <ul className="weather-details">
-            <li className="day"><FormattedDate date={weatherData.date}/></li>
-            <li className="condition text-capitalize">{weatherData.description}</li>
-          </ul>
-        
-            <div className="row">
-                <div className="col-12 col-sm-6 weather-icon-display">
-                <div className="d-flex">
-                <img src={weatherData.iconURL} alt="description" className="me-1" />
-                <span className="temperature">{Math.round(weatherData.temperature)}</span><span className="temperature-unit mt-3">°C</span>
+            <form className="form mx-auto mb-2" style={{ maxWidth: "450px" }} onSubmit={handleSubmit}>
+                <div className="row  g-1">
+                    <div className="col-12 col-md-9">
+                    <input type="search" className="form-control" placeholder="Enter a city..." autoFocus="on" onChange={handleCityChange}/>
+                    </div>
+                    <div className="col-8 mx-auto col-md-3">
+                    <button type="submit" className="btn btn-primary w-100" value="Search">Search</button>
                 </div>
-            </div>
+                </div>
+            </form>
 
-            <div className="col-12 col-sm-6">
-                    <ul>
-                        <li>Precipitation:{" "}{weatherData.precipitation}%</li>
-                        <li>Humidity:{" "}{weatherData.humidity}%</li>
-                        <li>Wind:{" "}{weatherData.wind.speed}km/h</li>
-                    </ul>
-            </div>
-            </div>
+            <WeatherInfo data={weatherData}/>
+    
         </div>
-); 
-       
+);       
 }
