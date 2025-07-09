@@ -49,3 +49,8 @@ font-weight: 400;
 color: rgb(33, 33, 33);
 font-weight: 400;
 }
+.Weather .canvas {
+height: 64px;
+width: 64px;
+}
+
