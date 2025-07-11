@@ -1,7 +1,9 @@
 import React from "react";
 
 export default function FormattedDate(props) {
-
+  if (!props.date || isNaN(props.date.getTime?.())) {
+    return <div>Loading date...</div>;
+  }
 console.log(props.date);
 let days = ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let day = days[props.date.getDay()]; 

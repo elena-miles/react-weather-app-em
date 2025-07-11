@@ -1,26 +1,36 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from "axios";
 import './Weather.css';
-
 import WeatherInfo from "./WeatherInfo";
 
 export default function Weather(props) { 
-    const [weatherData, setWeatherData] = useState({ready: false});
-    const [city, setCity] = useState(props.defaultCity);
 
+const [weatherData, setWeatherData] = useState({ready: false});
+ const [city, setCity] = useState(props.defaultCity);
 
+    function handleResponse(response) {
+        console.log(response.data);
+        setWeatherData({
+            ready: true,
+            time: new Date(response.data.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            date: new Date(response.data.dt * 1000),
+            city: response.data.name,
+            temperature: response.data.main.temp,
+            wind: response.data.wind.speed,
+            description: response.data.weather[0].description,
+            precipitation: response.data.clouds.all,
+            humidity: response.data.main.humidity,
+            icon: response.data.weather[0].icon.trim()
+        });
+    }
     function search() {
         if (city) {
             const APIkey="ac209dae1f283fb332a5bb7f50b0f468";
             const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${APIkey}&units=metric`;
             axios.get(apiUrl).then(handleResponse);
-        } else {
-            search();
-            alert("Please enter a city name.");
-            return "Loading...";
-        }   
-
+    }
     }
     function handleSubmit(event) {
         event.preventDefault();
@@ -31,21 +41,10 @@ export default function Weather(props) {
         setCity(event.target.value);
     }
 
-    function handleResponse(response) {
-        console.log(response.data);
-        setWeatherData({
-            ready: true,
-            time: new Date(response.data.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            date: new Date(response.data.dt * 1000),
-            city: response.data.name,
-            temperature: response.data.main.temp,
-            wind: response.data.wind,
-            description: response.data.weather[0].description,
-            precipitation: response.data.clouds.all,
-            humidity: response.data.main.humidity,
-            iconURL:"https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" //default icon REVISIT
-        });
-    }
+    useEffect(() => {
+        search();
+      }, []);
+
     return (
         <div className="Weather">
 

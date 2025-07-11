@@ -23,6 +23,9 @@ export default function WeatherIcon(props) {
     "50n": "FOG",
   };
 
+  const iconCode = props.code?.trim();
+  const animatedIcon = codeMapping[iconCode] || "CLEAR_DAY";
+
   return (
     <ReactAnimatedWeather
       icon={codeMapping[props.code]}
