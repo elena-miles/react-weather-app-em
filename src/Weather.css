@@ -66,4 +66,7 @@ width: 64px;
     .temperature-unit {
       font-size: 1rem;
     }
+    .Weather{
+    padding: 5px 5px 5px 5px !important;    
+    }
   }

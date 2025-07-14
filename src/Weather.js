@@ -48,14 +48,15 @@ const [weatherData, setWeatherData] = useState({ready: false});
     return (
         <div className="Weather">
 
-            <form className="form mx-auto mb-2" style={{ maxWidth: "450px" }} onSubmit={handleSubmit}>
-                <div className="row  g-1">
-                    <div className="col-12 col-md-9">
-                    <input type="search" className="form-control" placeholder="Enter a city..." autoFocus="on" onChange={handleCityChange}/>
+            <form className="form mb-2" style={{ maxWidth: "450px" }} onSubmit={handleSubmit}>
+                <div className="row g-1">
+                    <div className="col-9 mx-auto">
+                        <input type="search" className="form-control" placeholder="Enter a city..." autoFocus="on" onChange={handleCityChange}/>
                     </div>
-                    <div className="col-8 mx-auto col-md-3">
-                    <button type="submit" className="btn btn-primary w-100" value="Search">Search</button>
-                </div>
+
+                    <div className="col-3">
+                        <button type="submit" className="btn btn-primary w-100" value="Search">Search</button>
+                    </div>
                 </div>
             </form>
 
