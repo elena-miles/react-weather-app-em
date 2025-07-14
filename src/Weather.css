@@ -54,3 +54,16 @@ height: 64px;
 width: 64px;
 }
 
+@media (max-width: 576px) {
+    .weather-info {
+      padding: 1.5rem;
+    }
+  
+    .temperature-display {
+      font-size: 2rem;
+    }
+  
+    .temperature-unit {
+      font-size: 1rem;
+    }
+  }
