@@ -31,6 +31,9 @@ const [weatherData, setWeatherData] = useState({ready: false});
             const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${APIkey}&units=metric`;
             axios.get(apiUrl).then(handleResponse);
     }
+        else {
+            alert("Please enter a city");
+        }
     }
     function handleSubmit(event) {
         event.preventDefault();
