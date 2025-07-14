@@ -3,7 +3,7 @@
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperatureUnit from "./WeatherTemperatureUnit";
-import React, { useState } from "react";
+import React from "react";
 
 export default function WeatherInfo(props) {
     return (
