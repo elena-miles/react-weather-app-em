@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from "axios";
 import './Weather.css';
@@ -46,28 +46,27 @@ const [weatherData, setWeatherData] = useState({ready: false});
         setCity(event.target.value);
     }
 
-    useEffect(() => {
+    if (weatherData.ready) {
+        return (
+            <div className="Weather">
+                <form className="form mb-2" style={{ maxWidth: "450px" }} onSubmit={handleSubmit}>
+                    <div className="row g-1">
+                        <div className="col-9 mx-auto">
+                            <input type="search" className="form-control" placeholder="Enter a city..." autoFocus="on" onChange={handleCityChange}/>
+                        </div>
+
+                        <div className="col-3">
+                            <button type="submit" className="btn btn-primary w-100" value="Search">Search</button>
+                        </div>
+                    </div>
+                </form>
+
+                <WeatherInfo data={weatherData}/>
+                <WeatherForecast city={weatherData.city} />
+            </div>
+        );       
+    } else {
         search();
-      }, []);
-
-    return (
-        <div className="Weather">
-
-            <form className="form mb-2" style={{ maxWidth: "450px" }} onSubmit={handleSubmit}>
-                <div className="row g-1">
-                    <div className="col-9 mx-auto">
-                        <input type="search" className="form-control" placeholder="Enter a city..." autoFocus="on" onChange={handleCityChange}/>
-                    </div>
-
-                    <div className="col-3">
-                        <button type="submit" className="btn btn-primary w-100" value="Search">Search</button>
-                    </div>
-                </div>
-            </form>
-
-            <WeatherInfo data={weatherData}/>
-            <WeatherForecast city={weatherData.city} coordinates={weatherData.coordinates}/>
-    
-        </div>
-);      
+        return "Loading..."
+    }     
 }
