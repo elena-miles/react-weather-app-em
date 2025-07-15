@@ -18,6 +18,7 @@ const [weatherData, setWeatherData] = useState({ready: false});
             time: new Date(response.data.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             date: new Date(response.data.dt * 1000),
             city: response.data.name,
+            coordinates: response.data.coord,
             temperature: response.data.main.temp,
             wind: response.data.wind.speed,
             description: response.data.weather[0].description,
@@ -65,8 +66,8 @@ const [weatherData, setWeatherData] = useState({ready: false});
             </form>
 
             <WeatherInfo data={weatherData}/>
-            <WeatherForecast city={weatherData.city} />
+            <WeatherForecast city={weatherData.city} coordinates={weatherData.coordinates}/>
     
         </div>
-);       
+);      
 }
