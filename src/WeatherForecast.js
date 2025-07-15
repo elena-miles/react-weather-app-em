@@ -10,8 +10,8 @@ function handleResponse (response) {
 
 useEffect(() => {
     let APIkey="ffoa584b071af31b9db038336tec0bd6";
-    let latitude = props.coordinates.lat || 0; 
-    let longitude = props.coordinates.lon || 0;
+    let latitude = props.coordinates.lat; 
+    let longitude = props.coordinates.lon;
     let WeatherForecastURL = `https://api.shecodes.io/weather/v1/forecast?lat=${latitude}&lon=${longitude}&key=${APIkey}&units=metric`;
     axios
     .get(WeatherForecastURL)
