@@ -6,7 +6,7 @@ import WeatherTemperatureUnit from "./WeatherTemperatureUnit";
 import React from "react";
 
 export default function WeatherInfo(props) {
-    return (
+return (
     <div className="weatherinfo">
 
         <h1 className="City">{props.data.city}</h1>
@@ -18,13 +18,13 @@ export default function WeatherInfo(props) {
         
             <div className="row">
                 <div className="col-6 weather-icon-display">
-                  <div className="d-flex">
-
-                    <div className="me-1 icon-wrapper">
-                    <WeatherIcon code={props.data.icon} />
-                    </div>
-
-                    < WeatherTemperatureUnit celcius={props.data.temperature} />
+                <div className="d-flex">
+                      <div className="icon-wrapper">
+                      <WeatherIcon code={props.data.icon} size={52}/>
+                      </div>
+                      <div className="temp-wrapper">
+                      < WeatherTemperatureUnit celcius={props.data.temperature} />
+                      </div>
                 </div>
             </div>
 

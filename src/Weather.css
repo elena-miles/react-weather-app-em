@@ -36,23 +36,28 @@ padding:10px !important;
 .Weather button {
 cursor: pointer;
 }
-
+.Weather canvas {
+text-align: center;
+margin: 10px auto;
+}
+.temp-wrapper{
+position:relative;
+}
 .Weather .temperature {
 font-size: 48px;
 font-weight: 400;
 color: rgb(33, 33, 33);
 margin-right: 5px;
 }
+
 .Weather .temperature-unit {
 font-size: 16px;
 font-weight: 400;
-color: rgb(33, 33, 33);
-font-weight: 400;
+color: rgb(33, 33, 33); 
+
+
 }
-.Weather .canvas {
-height: 64px;
-width: 64px;
-}
+
 
 @media (max-width: 576px) {
     .weather-info {
