@@ -38,7 +38,8 @@
 }
 .Weather canvas {
     text-align: center;
-
+    object-fit: contain;
+    margin-top: 6px;
 }
 .temp-wrapper{
     position:relative;
