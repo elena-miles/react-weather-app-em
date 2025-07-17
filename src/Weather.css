@@ -43,7 +43,7 @@
 .Weather canvas {
     text-align: center;
     object-fit: contain;
-    margin: 10px auto 0;
+    margin: 0px auto;
     max-width: 100%;
 }
 .temp-wrapper{
@@ -65,6 +65,7 @@
 }
 
 @media (max-width: 576px) {
+
     .Weather {
       padding: 15px;
       margin: 15px;
@@ -75,7 +76,7 @@
     }
   
     .Weather .temperature {
-      font-size: 25px !important;
+      font-size: 30px !important;
     }
   
     .temperature-unit {
@@ -86,6 +87,7 @@
     .Weather form {
       flex-direction: column;
       gap: 10px;
+      padding: 0 0 0 0 !important;
     }
   
     .Weather button {
@@ -95,5 +97,15 @@
   
     .Weather li {
       font-size: 14px;
+    }
+    .weather-icon-display {
+    padding: 5px 5px 5px 5px;
+    }
+    .WeatherForecast-day{
+        font-size: 13px !important;
+        padding: 2px !important;
+    }
+    .WeatherForecast-temperature {
+        font-size: 13px !important;
     }
   }
