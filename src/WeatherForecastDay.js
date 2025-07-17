@@ -23,13 +23,13 @@ export default function WeatherForecastDay(props) {
     return (
       <div className="clearfix">
         <div className="WeatherForecast-day text-center">{day()}</div>
-        <WeatherIcon code={data.condition.icon} size={30} />
+        <WeatherIcon code={props.data.condition.icon} size={30} alt={props.data.condition.description}/>
         <div className="WeatherForecast-temperature">
           <span className="WeatherForecast-temperature-max">
-            {Math.round(data.temperature.max)}°
+            {Math.round(data.temperature.maximum)}°
           </span>
           <span className="WeatherForecast-temperature-min">
-            {Math.round(data.temperature.min)}°
+            {Math.round(data.temperature.minimum)}°
           </span>
         </div>
       </div>

@@ -38,7 +38,6 @@
 }
 .Weather canvas {
     text-align: center;
-    margin: 10px auto;
 }
 .temp-wrapper{
     position:relative;
@@ -57,7 +56,6 @@
     line-height: 1;
     top: -25px;
 }
-
 
 @media (max-width: 576px) {
     .weather-info {
