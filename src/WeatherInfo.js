@@ -20,7 +20,7 @@ return (
                 <div className="col-6 weather-icon-display">
                 <div className="d-flex">
                       <div className="icon-wrapper">
-                      <WeatherIcon code={props.data.icon} size={52}/>
+                      <WeatherIcon code={props.data.icon} size={45}/>
                       </div>
                       <div className="temp-wrapper">
                       < WeatherTemperatureUnit celcius={props.data.temperature} />
