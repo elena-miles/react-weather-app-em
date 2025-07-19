@@ -16,7 +16,7 @@ const [city, setCity] = useState(props.defaultCity);
         console.log(response.data);
         setWeatherData({
             ready: true,
-            time: new Date(response.data.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            time: new Date(response.data.dt * 1000).toLocaleTimeString([],{ hour: '2-digit', minute: '2-digit' }),
             date: new Date(response.data.dt * 1000),
             city: response.data.name,
             coordinates: response.data.coord,
@@ -50,14 +50,15 @@ const [city, setCity] = useState(props.defaultCity);
     if (weatherData.ready) {
         return (
             <div className="Weather">
-                <form className="form mb-2" style={{ maxWidth: "450px" }} onSubmit={handleSubmit}>
+                <form className="form" style={{ maxWidth: "450px" }} onSubmit={handleSubmit}>
+                   
                     <div className="row g-1">
                         <div className="col-9 mx-auto">
                             <input type="search" className="form-control" placeholder="Enter a city..." autoFocus="on" onChange={handleCityChange}/>
                         </div>
 
                         <div className="col-3">
-                            <button type="submit" className="btn btn-primary w-100" value="Search">Search</button>
+                            <button type="submit" className="btn btn-primary" value="Search">Search</button>
                         </div>
                     </div>
                 </form>
@@ -70,3 +71,5 @@ const [city, setCity] = useState(props.defaultCity);
         return "Loading..."
     }     
 }
+
+                       

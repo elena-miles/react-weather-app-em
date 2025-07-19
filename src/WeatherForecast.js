@@ -26,10 +26,10 @@ export default function WeatherForecast(props) {
   if (!forecast) return null;
 
   return (
-    <div className="WeatherForecast text-center">
-      <div className="row">
+    <div className="WeatherForecast">
+      <div className="row justify-content-center">
         {forecast.slice(0, 5).map((dailyForecast, index) => (
-          <div className="col" key={index}>
+          <div className="col-4 col-sm-2 text-center forecast-day" key={index}>
             <WeatherForecastDay data={dailyForecast} />
           </div>
         ))}

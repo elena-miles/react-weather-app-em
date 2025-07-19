@@ -1,22 +1,35 @@
 
 .Weather App {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 600px;
+  justify-content: center !important;
+  align-items: center !important;
+  max-width: 500px;
   font-family: Arial, Helvetica, sans-serif !important;
-  border: 1px solid #d9d9d9;
+}
+.container{
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+}
+.card {
+ border: 0.02px solid #f4f2f2;
+ max-width: 550px;
+ border-radius: 12px;
+ box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+ padding: 20px;
 }
 .App footer {
   text-align: center;
-  margin-top: 20px;
   font-size: 11px;
+  margin-top: 20px;
+  color: #888;
 }
-link {
+a {
   color: #1890ff;
   text-decoration: underline;
 }
-link:hover a {
+
+a:hover {
   text-decoration: none;
   cursor: pointer;
 }
